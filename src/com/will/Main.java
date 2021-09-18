@@ -9,7 +9,7 @@ public class Main {
         check1.showInfo();
         check1.deposit(400);
         check1.transfer("venmo",50);
-        System.out.println("****************");
+        System.out.println("**************");
         save1.showInfo();
 
 
