@@ -6,8 +6,8 @@ public abstract class Account implements IBaseRate {
     private String sSN;
     private double balance;
     private static int index = 10000;
-    String accountNumber;
-    double rate;
+    protected String accountNumber;
+    protected double rate;
 
     //Constructor to set base properties and initialize the account
 
@@ -24,8 +24,6 @@ public abstract class Account implements IBaseRate {
         this.accountNumber = setAccountNumber();
         setRate();
     }
-
-
     // List common methods
     public abstract void setRate();
 
@@ -34,6 +32,12 @@ public abstract class Account implements IBaseRate {
         int uniqueID = index;
         int randomNumber = (int) (Math.random() *Math.pow(10,3));
         return lastTwoOfSSN + uniqueID + randomNumber;
+    }
+    public void compound(){
+        double accruedInterest = balance * (rate/100);
+        balance += accruedInterest;
+        System.out.println("Accrued Interest: $" + accruedInterest);
+        printBalance();
     }
     public void deposit(double amount){
         balance += amount;
@@ -47,7 +51,7 @@ public abstract class Account implements IBaseRate {
     };
     public void transfer(String toWhere, double amount){
         balance -= amount;
-        System.out.println("Transfering $" + amount + " to " + toWhere);
+        System.out.println("Transferring $" + amount + " to " + toWhere);
         printBalance();
     };
     public void printBalance(){
